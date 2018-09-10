@@ -1,0 +1,274 @@
+# menu
+menu:
+  Home: .
+  Archives: archives  # 归档
+  Categories: categories  # 分类
+  Tags: tags  # 标签
+  Repository: repository  # github repositories
+  # Books: books  # 豆瓣书单
+  Links: links  # 友链
+  About: about  # 关于
+
+# Enable/Disable menu icons
+menu_icons:
+  enable: true  # 是否启用导航菜单图标
+  home: icon-home-fill
+  archives: icon-archives-fill
+  categories: icon-folder
+  tags: icon-tags
+  repository: icon-project
+  books: icon-book-fill
+  links: icon-friendship
+  about: icon-cup-fill
+
+# rss
+rss: /atom.xml
+
+# Site
+site:
+  logo:
+    enabled: true
+    width: 40    
+    height: 40
+    url: ../images/favatar/eos.png
+  title: 晓晨区块--区块链技术开发 # 页面title
+  favicon: ../images/favatar/eos.png
+  board: <p>欢迎交流与分享经验!</p> # 站点公告
+  copyright: false # 底部版权信息
+
+# config
+config:
+  skin: theme-black # 主题颜色 theme-black theme-blue theme-green theme-purple
+  layout: main-center # 布局方式 main-left main-center main-right
+  toc: true # 是否开启文章章节目录导航
+  menu_highlight: true # 是否开启当前菜单高亮显示
+  thumbnail: false # enable posts thumbnail, options: true, false
+  excerpt_link: Read More
+
+# Pagination
+pagination:
+  number: false
+  prev: 
+    alwayShow: true
+  next:
+    alwayShow: true
+
+# Sidebar
+sidebar: right
+widgets:
+  - board  
+  - category
+  - tag
+  - tagcloud
+  - archive
+  - recent_posts
+
+# display widgets at the bottom of index pages (pagination == 2)
+index_widgets:
+- category
+- tagcloud
+- archive
+
+# widget behavior
+archive_type: 'monthly'
+show_count: true
+
+# Search
+search:
+  insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+  swiftype: # enter swiftype install key here
+  baidu: false # you need to disable other search engines to use Baidu search
+
+# Donate
+donate:
+  enable: true
+  # 微信打赏
+  wechatpay:
+    qrcode: images/donate/wechatpayimg.png
+    title: 微信支付
+  # 支付宝打赏
+  alipay: 
+    qrcode: images/donate/alipayimg.png 
+    title: 支付宝
+
+# Share
+# weibo,qq,qzone,wechat,tencent,douban,diandian,facebook,twitter,google,linkedin
+share:
+  enable: true  # 是否启用分享
+  sites: weibo,qq,wechat,facebook,twitter  # PC端显示的分享图标
+  mobile_sites: weibo,qq,wechat,qzone  # 移动端显示的分享图标
+
+# Github
+github: 
+  username: cctanfujun  # github username
+
+# Comment
+# Gitment
+# Introduction: https://imsun.net/posts/gitment-introduction/
+comment:
+  type: livere  # 启用哪种评论系统
+  disqus:  # enter disqus shortname here
+  youyan: 
+    uid: 1783844 # enter youyan uid 
+  livere:
+    uid: MTAyMC8zOTYzNy8xNjE2NA== # enter youyan uid 
+  gitment:
+    githubID: 
+    repo: 
+    ClientID: 
+    ClientSecret: 
+    lazy: false
+  valine: # Valine. https://valine.js.org
+    appid:  xNqcx0L3CdpKoVr3wXAqTpks-gzGzoHsz # your leancloud application appid
+    appkey: s0594BRCTneLU7yUft04Ogvs # your leancloud application appkey
+    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+    verify: false # Verification code
+    placeholder: Just go go # comment box placeholder
+    avatar: mm # gravatar style
+    meta: nick,mail,link # custom comment header
+    pageSize: 10 # pagination size
+    visitor: false # Article reading statistic https://valine.js.org/visitor.html
+
+# douban 豆瓣书单
+# Api：
+  # https://developers.douban.com/wiki/?title=book_v2 图书
+  # https://developers.douban.com/wiki/?title=movie_v2 电影
+# books：  
+  # https://api.douban.com/v2/book/user/:name/collections?start=0&count=100 个人书单列表
+# movies: 
+  # https://api.douban.com/v2/movie/in_theaters 正在上映的电影
+  # https://api.douban.com/v2/movie/coming_soon 即将上映的电影
+  # https://api.douban.com/v2/movie/subject/:id 单个电影信息
+  # https://api.douban.com/v2/movie/search?q={text} 电影搜索
+# douban:
+#   user: # 豆瓣用户名
+#   start: 0 # 从哪一条记录开始
+#   count: 100 # 获取豆瓣书单数据条数
+  
+# PV
+pv:
+  busuanzi:
+    enable: false  # 不蒜子统计
+  leancloud:
+    enable: false  # leancloud统计
+    app_id: # leancloud <AppID>
+    app_key: # leancloud <AppKey>
+        
+# wordcount
+postCount:
+  enable: false
+  wordcount: true  # 文章字数统计
+  min2read: true  # 阅读时长预计 
+
+# Plugins
+plugins:
+  google_analytics: # enter the tracking ID for your Google Analytics
+  google_site_verification: # enter Google site verification code
+  baidu_analytics: # enter Baidu Analytics hash key
+  tencent_analytics: 
+  
+# Miscellaneous
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:  
+  
+# profile
+profile:
+  enabled: true # Whether to show profile bar
+  avatar: images/avatar.jpg
+  gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+  author: 晓晨DEV
+  author_title: BlockChain Developer
+  author_description: 区块链工程师，加密货币爱好者
+  location: Shenzhen, China
+  follow: https://github.com/cctanfujun
+  # Social Links
+  social:
+    links:
+      github: https://github.com/cctanfujun
+      weibo: https://www.weibo.com/xiaochendev
+      twitter: https://twitter.com/xiaochendev
+      # facebook: /
+      # dribbble: /
+      # behance: https://www.behance.net/cofess
+      rss: atom.xml
+    link_tooltip: true # enable the social link tooltip, options: true, false
+  # My Skills 
+  skills:
+    BlockChain: ★★★☆☆
+    Android: ★★★☆☆
+    Javascript: ★★★☆☆
+    Kotlin: ★★★☆☆
+    Python: ★★★☆☆
+    GO: ★★★☆☆    
+  # My Personal Links
+  links:
+    Github: https://github.com/cctanfujun
+    # Blog: http://blog.cofess.com
+    微博: https://www.weibo.com/xiaochendev
+    # 花瓣: http://huaban.com/cofess
+    # Behance: https://www.behance.net/cofess
+  # My Personal Labels
+  labels:
+    - 区块链开发
+    - 以太坊
+    - EOS
+    - Android开发
+    - 前端
+  # My Personal Works
+  # works:
+  #   name:
+  #     link: http://www.example.com
+  #     date: 2016
+  # My Personal Projects
+  # projects:
+  #   cofess/gulp-startpro: https://github.com/cofess/gulp-startpro
+  #   cofess/hexo-theme-pure: https://github.com/cofess/hexo-theme-pure
+
+# hexo-neat
+neat_enable: true
+neat_html:
+  enable: true
+  exclude:  
+neat_css:
+  enable: true
+  exclude:
+    - '*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '*.min.js'
+
+# 翻译标题
+translate_title:
+  translate_way: baidu    #google | baidu | youdao
+  youdao_api_key: XXX
+  youdao_keyfrom: XXX
+  is_need_proxy: false    #true | false
+  proxy_url: http://localhost:8123    
+
+# RSS
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:  
+
+sitemap:
+    path: sitemap.xml
+
+baidusitemap:
+    path: baidusitemap.xml      
+
+jsonContent:
+  ignore:
+    - path/to/a/page
+    - url/to/one/post
+    - an-entire-category
+    - specific.file
+    - .ext # a file extension    
