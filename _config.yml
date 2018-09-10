@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: 晓晨区块
+subtitle: 区块链、以太坊、EOS 开发
 description:
 keywords:
-author: John Doe
-language:
+author: xiaochendev
+language: zh-CN
 timezone:
 
 # URL
