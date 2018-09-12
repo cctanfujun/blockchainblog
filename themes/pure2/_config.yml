@@ -33,7 +33,7 @@ site:
     url: ../images/favatar/eos.png
   title: 晓晨区块--区块链技术开发 # 页面title
   favicon: ../images/favatar/eos.png
-  board: <p>欢迎交流与分享经验!</p> # 站点公告
+  board: <p>区块链技术开发博客，关注 ETH EOS 等区块链开发技术.</p> # 站点公告
   copyright: false # 底部版权信息
 
 # config
@@ -245,11 +245,11 @@ neat_js:
 
 # 翻译标题
 translate_title:
-  translate_way: baidu    #google | baidu | youdao
+  translate_way: google    #google | baidu | youdao
   youdao_api_key: XXX
   youdao_keyfrom: XXX
-  is_need_proxy: false    #true | false
-  proxy_url: http://localhost:8123    
+  is_need_proxy: true    #true | false
+  proxy_url: http://localhost:4000
 
 # RSS
 feed:
