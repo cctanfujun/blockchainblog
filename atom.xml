@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>晓晨区块</title>
+  
+  <subtitle>区块链、以太坊、EOS 开发</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-09-11T07:43:30.015Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>xiaochendev</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>zeppelinos 初探</title>
+    <link href="http://yoursite.com/2018/09/11/preliminary-study-of-zeppelinos/"/>
+    <id>http://yoursite.com/2018/09/11/preliminary-study-of-zeppelinos/</id>
+    <published>2018-09-11T06:56:41.000Z</published>
+    <updated>2018-09-11T07:43:30.015Z</updated>
+    
+    <content type="html"><![CDATA[<!-- build time:Wed Sep 12 2018 11:25:45 GMT+0800 (CST) --><p>之前在开发以太坊合约的时候一直会使用openzepplin的库,今天看见推出了ZeeplinOS这个项目,研究了一下。</p><blockquote><p><a href="https://zeppelinos.org/" target="_blank" rel="noopener">https://zeppelinos.org/</a><br>ZeppelinOS 是专为智能合约设计的操作系统，它不仅提供链上可升级的程序编码库，而且还提供保持程序持续升级、修补的奖励机制。</p></blockquote><p>个人理解本质上是对 Truffle 进行了整合,然后把很多代码库做成了库的模式方便开发者使用，在过程中还引入了激励机制让开发者一起维护。</p><p>如果是有 Truffle 使用经验的人的话应该是比较容易上手的。</p><h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>首先安装 <code>zos</code>：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global zos</span><br></pre></td></tr></table></figure><p>然后初始化项目：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir my-app &amp;&amp; <span class="built_in">cd</span> my-app</span><br><span class="line">npm init</span><br><span class="line">zos init my-app</span><br></pre></td></tr></table></figure><p>这里会生成 <code>zos.json</code> 这个文件中会记录应用的信息。</p><p>安装 <code>zos-lib</code> zos库:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install zos-lib</span><br></pre></td></tr></table></figure><p>进行合约编写 MyContract.sol 放在 contracts/ 目录下面:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pragma solidity ^0.4.21;</span><br><span class="line">import <span class="string">"zos-lib/contracts/migrations/Migratable.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract MyContract is Migratable &#123;</span><br><span class="line">  uint256 public x;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> initialize(uint256 _x) isInitializer(<span class="string">"MyContract"</span>, <span class="string">"0"</span>) public &#123;</span><br><span class="line">    x = _x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这里的合约规则和 solidity 原生的规则略有差别，使用 intialize 作为构造函数，zos 的要求。</p><p>进行合约编译:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zos add MyContract</span><br></pre></td></tr></table></figure><p>接下来启动区块链网络，这样我没有按照官网来启动 <code>ganache-cli</code> 而是打开 <code>Ganache</code> 然后修改 <code>truffle-config.js</code> 中的端口号</p><p>执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">zos push --network <span class="built_in">local</span></span><br></pre></td></tr></table></figure><p>推送你的应用到区块链网络。</p><p>我理解push命令是推送一个应用到区块链网络，zeppelin应该是认为应用由多个合约组成，合约是可以升级的。</p><p>创建合约的实例</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zos create MyContract --init initialize --args 42 --network <span class="built_in">local</span></span><br></pre></td></tr></table></figure><h2 id="升级合约"><a href="#升级合约" class="headerlink" title="升级合约"></a>升级合约</h2><p>如果你发现合约有问题要升级合约,比如官方例子给合约增加了一个函数:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import <span class="string">"zos-lib/contracts/migrations/Migratable.sol"</span>;</span><br><span class="line"></span><br><span class="line">contract MyContract is Migratable &#123;</span><br><span class="line">  uint256 public x;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> initialize(uint256 _x) isInitializer(<span class="string">"MyContract"</span>, <span class="string">"0"</span>) public &#123;</span><br><span class="line">    x = _x;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> increment() public &#123;</span><br><span class="line">    x += 1;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>把新的代码推送到网络：<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zos push --network <span class="built_in">local</span></span><br></pre></td></tr></table></figure><p></p><p>执行更新命令：<br></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zos update MyContract --network <span class="built_in">local</span></span><br></pre></td></tr></table></figure><p></p><h2 id="使用标准库"><a href="#使用标准库" class="headerlink" title="使用标准库"></a>使用标准库</h2><p>官方提供了标准库方便开发者使用</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zos link openzeppelin-zos</span><br></pre></td></tr></table></figure><p>使用这些库可以简化智能合约的开发。</p><h2 id="原理推测"><a href="#原理推测" class="headerlink" title="原理推测"></a>原理推测</h2><p>我还没有详细研究 zeepelin 辅助实现合约升级的原理，初步猜想应该是通过代理模式，首先部署一个合约,然后通过这个合约来调用其他合约的方法，变更的时候就是调用地址的转向。估计实际的实现应该考虑了更多场景，更多的方案。</p><p>关于合约升级，推荐大家阅读2篇文章。</p><p><a href="https://segmentfault.com/a/1190000015732881" target="_blank" rel="noopener">智能合约升级模式介绍 — 入门篇</a><br><a href="https://segmentfault.com/a/1190000015732950" target="_blank" rel="noopener">深度剖析智能合约升级——inherited storage</a></p><p>Zeppelin 的具体实现之后再研究。个人觉得能快速帮助开发者实现合约编写是很好的,如果能有 Truffle box 那种直接生成前端框架的命令就更好了,现在这种情况，,对于编写应用的开发者还做不到开箱即用。</p><!-- rebuild by neat -->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Wed Sep 12 2018 11:25:45 GMT+0800 (CST) --&gt;&lt;p&gt;之前在开发以太坊合约的时候一直会使用openzepplin的库,今天看见推出了ZeeplinOS这个项目,研究了一下。&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="ETH" scheme="http://yoursite.com/categories/ETH/"/>
+    
+    
+      <category term="ETH" scheme="http://yoursite.com/tags/ETH/"/>
+    
+      <category term="zeppelin" scheme="http://yoursite.com/tags/zeppelin/"/>
+    
+  </entry>
+  
+</feed>
