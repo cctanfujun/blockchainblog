@@ -30,9 +30,9 @@ site:
     enabled: true
     width: 40    
     height: 40
-    url: ../images/favatar/eos.png
+    url: http://tanfujun.com/blockchainblog/images/favatar/eos.png
   title: 晓晨区块--区块链技术开发 # 页面title
-  favicon: ../images/favatar/eos.png
+  favicon: http://tanfujun.com/blockchainblog/images/favatar/eos.png
   board: <p>区块链技术开发博客，关注 ETH EOS 等区块链开发技术.</p> # 站点公告
   copyright: false # 底部版权信息
 
@@ -226,30 +226,7 @@ profile:
   #   cofess/gulp-startpro: https://github.com/cofess/gulp-startpro
   #   cofess/hexo-theme-pure: https://github.com/cofess/hexo-theme-pure
 
-# hexo-neat
-neat_enable: true
-neat_html:
-  enable: true
-  exclude:  
-neat_css:
-  enable: true
-  exclude:
-    - '*.min.css'
-neat_js:
-  enable: true
-  mangle: true
-  output:
-  compress:
-  exclude:
-    - '*.min.js'
 
-# 翻译标题
-translate_title:
-  translate_way: google    #google | baidu | youdao
-  youdao_api_key: XXX
-  youdao_keyfrom: XXX
-  is_need_proxy: true    #true | false
-  proxy_url: http://localhost:4000
 
 # RSS
 feed:
@@ -258,17 +235,3 @@ feed:
   limit: 20
   hub:
   content:  
-
-sitemap:
-    path: sitemap.xml
-
-baidusitemap:
-    path: baidusitemap.xml      
-
-jsonContent:
-  ignore:
-    - path/to/a/page
-    - url/to/one/post
-    - an-entire-category
-    - specific.file
-    - .ext # a file extension    
