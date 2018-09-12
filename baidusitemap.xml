@@ -3,10 +3,9 @@
 
 
     
-    
   <url>
-    <loc>http://yoursite.com/2018/09/11/preliminary-study-of-zeppelinos/</loc>
-    <lastmod>2018-09-11T07:43:30.015Z</lastmod>
+    <loc>http://yoursite.com../2018/09/11/preliminary-study-of-zeppelinos/</loc>
+    <lastmod>2018-09-12T03:25:45.499Z</lastmod>
     <data>
         <display>
         <title>zeppelinos 初探</title>
@@ -19,12 +18,13 @@
          
            
              
-              <breadCrumb title="ETH" url="http://yoursite.com/categories/ETH/"/>
+              <breadCrumb title="ETH" url="http://yoursite.com../categories/ETH/"/>
           
         </display>
     </data>
     </url>
 
+    
     
     
     
